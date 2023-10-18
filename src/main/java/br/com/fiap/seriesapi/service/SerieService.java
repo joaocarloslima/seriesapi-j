@@ -13,4 +13,12 @@ public class SerieService {
 		return dao.findAll();
 	}
 
+	public Serie findById(Long id) {
+		return dao.findById(id);
+	}
+
+	public void delete(Long id) {
+		dao.delete(id);
+	}
+
 }

@@ -21,4 +21,19 @@ public class SerieDao {
 		return lista;
 	}
 
+	public Serie findById(Long id) {
+		//SELECT * FROM SERIES WHERE ID=?
+		return lista
+			.stream()
+			.filter(serie -> serie.id() == id)
+			.findFirst()
+			.orElse(null);
+	}
+
+	public void delete(Long id) {
+		var serie = findById(id);
+		lista.remove(serie);
+		System.out.println(lista);
+	}
+
 }
