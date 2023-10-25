@@ -36,4 +36,14 @@ public class SerieDao {
 		System.out.println(lista);
 	}
 
+	public void create(Serie serie) {
+		// INSERT INTO
+		lista.add(serie);
+	}
+
+	public void update(Serie serie) {
+		// UPDATE Series SET ....
+		
+	}
+
 }

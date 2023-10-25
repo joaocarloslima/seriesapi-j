@@ -6,6 +6,8 @@ import br.com.fiap.seriesapi.model.Serie;
 import br.com.fiap.seriesapi.service.SerieService;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
@@ -50,6 +52,45 @@ public class SerieResource {
 		service.delete(id);
 		return Response.noContent().build();
 	}
+	
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response create(Serie serie) {
+		if(!service.create(serie)) {
+			return Response.status(Response.Status.BAD_REQUEST).build();
+		}
+		
+		return Response.ok(serie).build();
+	}
+	
+	@PUT
+	@Path("{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response update(@PathParam("id") Long id, Serie serie) {
+		var serieEncontrada = service.findById(id);
+		
+		if (serieEncontrada == null) {
+			return Response.status(Response.Status.NOT_FOUND).build();
+		}
+		
+		if (!service.update(serie)){
+			return Response.status(Response.Status.BAD_REQUEST).build();
+		}
+		
+		return Response.ok(serie).build();
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
